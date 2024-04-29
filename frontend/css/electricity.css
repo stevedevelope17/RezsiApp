@@ -1,0 +1,49 @@
+html,
+body {
+  height: 100dvh;
+}
+body {
+  font-family: Robot, sans-serif;
+  background: ivory;
+  color: #263238;
+}
+
+.btn {
+  background-color: #009688;
+}
+.btn .fa-solid {
+  font-size: 16px;
+}
+
+.nav-link .fa-solid {
+  color: #009688;
+}
+
+header .button {
+  border: none;
+  background: transparent;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.75rem;
+}
+
+header .button .fa-solid {
+  color: #009688;
+}
+
+.nav-link.active {
+  color: #009688;
+  border-bottom: 2px solid #455a64;
+}
+
+.button {
+  border: none;
+  background: #455a64;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  color: #ffffff;
+}
+
+footer {
+  background-color: #263238;
+  color: #ffffff;
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gázóra állások</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/frontend/css/gas.css" />
+    <link rel="stylesheet" href="/backend/routes/bootstrap/bootstrap.js" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+  </head>
+
+  <body>
+    <header
+      class="navbar navbar-expand bg-light navbar-light sticky-top shadow-sm"
+    >
+      <div class="container-fluid">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/home"
+              ><i class="fa-solid fa-home"></i> <span>Kezdőlap</span></a
+            >
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/gas"
+              ><i class="fa-solid fa-mask-ventilator"></i>
+              <span>Gázóra állások</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/electricity"
+              ><i class="fa-solid fa-plug"></i>
+              <span>Villanyóra állások</span></a
+            >
+          </li>
+        </ul>
+
+        <button id="logout" onclick="logout()" class="button float-end">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+      </div>
+    </header>
+    <div class="container-fluid">
+      <form id="add-gas">
+        <div class="mb-3 mt-3">
+          <label class="form-label">Dátum:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="mDate"
+            placeholder="Dátum"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Mérő állása:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="mValue"
+            placeholder="Gázóra állás értéke"
+          />
+        </div>
+        <button type="submit" class="button">Rögzít</button>
+      </form>
+
+      <div id="canvasContainer">
+        <canvas
+          id="gasChart"
+          style="width: 100%; height: 100%; min-height: 400px"
+        ></canvas>
+      </div>
+
+      <form class="d-flex mt-3 mb-3" role="search" id="searchingForm">
+        <input
+          class="form-control"
+          type="search"
+          placeholder="Keresés"
+          aria-label="Search"
+          name="searching"
+          id="searching"
+        />
+        <button class="btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+
+      <div id="gasTable"></div>
+    </div>
+
+    <footer class="container-fluid p-1 text-center sticky-bottom">
+      Készítette: Balogh Krisztián, Nagy István, Szilágyi Attila
+    </footer>
+
+    <!-- The Modal -->
+    <div class="modal fade" id="editGas">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Mérőállás módosítása</h4>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="mb-3 mt-3">
+              <label class="form-label">Dátum:</label>
+              <input
+                type="date"
+                class="form-control"
+                id="editDate"
+                placeholder="Dátum"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Új mérőállás:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="editValue"
+                placeholder="Gázóra állás értéke"
+              />
+            </div>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="button"
+              data-bs-dismiss="modal"
+              onclick="updateGasData()"
+            >
+              Rögzít
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="gas.js"></script>
+    <script src="logout.js"></script>
+  </body>
+</html>
